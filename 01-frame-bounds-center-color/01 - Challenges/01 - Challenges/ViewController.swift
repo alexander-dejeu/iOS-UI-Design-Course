@@ -15,7 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
 //        challengeOne() // Red Box
-        challengeTwo()  //Chessboard
+//        challengeTwo() // Chessboard
+        challengeThree() // Color grid
     }
     
     
@@ -29,8 +30,29 @@ class ViewController: UIViewController {
     }
     
     func challengeTwo(){
-        let grid = Grid(frame: CGRect(x: 20, y: 20, width: 240, height: 240), rows: 8, colms: 8)
+        let grid = Grid(frame: CGRect(x: 20, y: 20, width: 240, height: 240), rows: 10, colms: 10)
         self.view.addSubview(grid)
+    }
+    
+    func challengeThree(){
+        let view = UIView(frame: self.view.frame)
+        
+        let count = 10
+        for i in 0 ... count {
+            let layerHeight = view.bounds.height / CGFloat(count)
+            let smallerLayer = CALayer()
+            
+            smallerLayer.frame = CGRect(x: 0, y: layerHeight * CGFloat(i), width: view.bounds.width, height: layerHeight)
+            
+            let hue = 1.0 / (Double)(count) * Double(i)
+            smallerLayer.backgroundColor = UIColor(hue: CGFloat(hue), saturation: 1, brightness: 1, alpha: 1).cgColor
+            
+            
+            
+            view.layer.addSublayer(smallerLayer)
+        }
+        
+        self.view.addSubview(view)
     }
     
 }

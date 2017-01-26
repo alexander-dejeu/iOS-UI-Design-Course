@@ -42,9 +42,9 @@ class Grid: UIView {
         for j in 0 ..< rows {
             currentColorIndex = j % 2
             for i in 0 ..<  colms{
-                let x = CGFloat(i).truncatingRemainder(dividingBy: 8.0) * (self.frame.width / 8.0) + self.bounds.origin.x
-                let y = CGFloat(j) * (self.frame.height / 8.0) + self.bounds.origin.y
-                let frame = CGRect(x: x, y: y, width: self.frame.width / 8.0, height: self.frame.height / 8.0)
+                let x = CGFloat(i).truncatingRemainder(dividingBy: CGFloat(colms)) * (self.frame.width / CGFloat(colms)) + self.bounds.origin.x
+                let y = CGFloat(j) * (self.frame.height / CGFloat(rows)) + self.bounds.origin.y
+                let frame = CGRect(x: x, y: y, width: self.frame.width / CGFloat(colms), height: self.frame.height / CGFloat(rows))
                 let layer : CALayer = CALayer()
                 layer.frame = frame
                 
