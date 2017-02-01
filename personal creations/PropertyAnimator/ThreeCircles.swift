@@ -29,15 +29,17 @@ class ThreeCircles: UIView {
         let path = UIBezierPath()
         let cx = bounds.width / 2
         let cy = bounds.height / 2
-        for i in 0 ..< 3 {
-            let t = CGFloat(M_PI * 2) / 3 * CGFloat(i)
-            let x = sin(t) * 60 + cx
-            let y = cy - cos(t) * 60
+        let nodules = 3
+        for i in 0 ..< nodules {
+            let t = CGFloat(M_PI * 2) / CGFloat(nodules) * CGFloat(i)
+            let x = sin(t) * 67.2 + cx
+            let y = cy - cos(t) * 67.2
             let c = CGPoint(x: x, y: y)
-            let startAngle: CGFloat = 0
-            let endAngle = CGFloat(M_PI * 2) * 0.75
+            let pi = CGFloat(M_PI * 2)
+            let startAngle: CGFloat = (pi * 0.38) + (pi / CGFloat(nodules) * CGFloat(i))
+            let endAngle = startAngle + pi * 0.75
             
-            path.addArc(withCenter: c, radius: 40, startAngle: 0, endAngle: endAngle, clockwise: true)
+            path.addArc(withCenter: c, radius: 60, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         }
         
         shapeLayer.path = path.cgPath
@@ -45,14 +47,5 @@ class ThreeCircles: UIView {
         shapeLayer.lineWidth = 5
         shapeLayer.fillColor = UIColor.clear.cgColor
     }
-    
-    
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
     
 }
