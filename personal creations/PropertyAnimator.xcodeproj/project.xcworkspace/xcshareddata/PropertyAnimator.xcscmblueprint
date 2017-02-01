@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "86E7FA79069208D8F9E507A3338113B2B207741F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "86E7FA79069208D8F9E507A3338113B2B207741F" : 9223372036854775807,
+    "EDAAD0A68ABE066531792545821A6D058B68A243" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1EF3E187-1612-4134-B7D0-AFBF5F52893F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "86E7FA79069208D8F9E507A3338113B2B207741F" : "iOS%20UI%20Design\/",
+    "EDAAD0A68ABE066531792545821A6D058B68A243" : "..\/.."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "PropertyAnimator",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "personal creations\/PropertyAnimator.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/alexander-dejeu\/iOS-UI-Design-Course.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "86E7FA79069208D8F9E507A3338113B2B207741F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/MakeSchool-18\/Data-Structures.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EDAAD0A68ABE066531792545821A6D058B68A243"
+    }
+  ]
+}
