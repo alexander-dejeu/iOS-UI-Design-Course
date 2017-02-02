@@ -18,7 +18,7 @@ class ViewController6: UIViewController {
         let r = CGRect(x: 20, y: 20, width: w, height: w)
         let v = ThreeCircles(frame: r)
         v.center = view.center
-        v.backgroundColor = UIColor.orange
+        v.backgroundColor = UIColor.clear
         view.addSubview(v)
         
     }

@@ -41,20 +41,20 @@ class ThreeCircles: UIView {
         
         path.addArc(withCenter: CGPoint(x:180, y:180), radius: 60, startAngle: startAngle, endAngle: endAngle, clockwise: true)
 
-        endAngle = CGFloat(180+180).degreesToRadians
-        startAngle  = CGFloat(180+180+300).degreesToRadians
+        endAngle = CGFloat(0).degreesToRadians
+        startAngle  = CGFloat(300).degreesToRadians
         
         path.addArc(withCenter: CGPoint(x:180-60, y:180+103.9), radius: 60, startAngle: startAngle , endAngle: endAngle, clockwise: false)
         
         
         startAngle = CGFloat(180).degreesToRadians
-        endAngle  = CGFloat(180+300).degreesToRadians
+        endAngle  = CGFloat(120).degreesToRadians
         
         path.addArc(withCenter: CGPoint(x:180+60, y:180+103.9), radius: 60, startAngle: startAngle , endAngle: endAngle, clockwise: true)
         
         
-        startAngle = CGFloat(180+300).degreesToRadians
-        endAngle  = CGFloat(180+300+120).degreesToRadians
+        startAngle = CGFloat(120).degreesToRadians
+        endAngle  = CGFloat(240).degreesToRadians
         
         path.addArc(withCenter: CGPoint(x:180+60, y:180+103.9), radius: 60, startAngle: startAngle , endAngle: endAngle, clockwise: true)
         
@@ -65,15 +65,15 @@ class ThreeCircles: UIView {
         path.addArc(withCenter: CGPoint(x:180, y:180), radius: 60, startAngle: startAngle , endAngle: endAngle, clockwise: false)
 
         
-        startAngle = CGFloat(180+300+120).degreesToRadians
-        endAngle  = CGFloat(180+300+120+300).degreesToRadians
+        startAngle = CGFloat(240).degreesToRadians
+        endAngle  = CGFloat(180).degreesToRadians
         
         path.addArc(withCenter: CGPoint(x:180+60, y:180+103.9), radius: 60, startAngle: startAngle , endAngle: endAngle, clockwise: true)
 
         
         // Next loop
         startAngle = CGFloat(0).degreesToRadians
-        endAngle  = CGFloat(360+60).degreesToRadians
+        endAngle  = CGFloat(60).degreesToRadians
         
         path.addArc(withCenter: CGPoint(x:180-60, y:180+103.9), radius: 60, startAngle: startAngle , endAngle: endAngle, clockwise: false)
         
@@ -82,12 +82,21 @@ class ThreeCircles: UIView {
         endAngle  = CGFloat(360-60).degreesToRadians
         
         path.addArc(withCenter: CGPoint(x:180-60, y:180+103.9), radius: 60, startAngle: startAngle , endAngle: endAngle, clockwise: false)
+        
+        
+        //Add one last 0.05 of the total 6*360 * 0.05 = 108
+        startAngle = CGFloat(180-60).degreesToRadians
+        endAngle = CGFloat(180-60+108).degreesToRadians
+        
+        path.addArc(withCenter: CGPoint(x:180, y:180), radius: 60, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        
+        
     
         
         
         
         shapeLayer.path = path.cgPath
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
+        shapeLayer.strokeColor = UIColor.blue.cgColor
         shapeLayer.lineWidth = 4
         shapeLayer.fillColor = UIColor.clear.cgColor
 
@@ -117,20 +126,23 @@ class ThreeCircles: UIView {
         
         let a = CABasicAnimation(keyPath: "strokeEnd")
         a.duration = 3
-        a.fromValue = 0
+        a.fromValue = 0.05
         a.timingFunction = CAMediaTimingFunction(name: "linear")
         a.toValue = 1
-        a.repeatCount = Float.infinity
-        shapeLayer.add(a, forKey: "strokeEnd")
+         a.repeatCount = Float.infinity
         
         let b = CABasicAnimation(keyPath: "strokeStart")
         b.duration = 3
         b.fromValue = 0.0
-        b.toValue = 0.80
+        b.toValue = 0.95
         b.repeatCount = Float.infinity
         b.timingFunction = CAMediaTimingFunction(name: "linear")
 
+        shapeLayer.add(a, forKey: "strokeEnd")
         shapeLayer.add(b, forKey: "strokeStart")
+        
+        
+        
         
         
 //        let a = CABasicAnimation(keyPath: "strokeEnd")
