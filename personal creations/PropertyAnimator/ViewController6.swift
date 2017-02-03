@@ -14,11 +14,11 @@ class ViewController6: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let w = view.bounds.width - 40
+        let w = 50
         let r = CGRect(x: 20, y: 20, width: w, height: w)
-        let v = ThreeCircles(frame: r)
+        let v = ThreeCircles(frame: r, color: UIColor(red: 106.0/255.0, green: 229.0/255.0, blue: 222.0/255.0, alpha: 1.0))
         v.center = view.center
-        v.backgroundColor = UIColor(red: 106.0/255.0, green: 229.0/255.0, blue: 222.0/255.0, alpha: 1.0)
+//        v.backgroundColor = UIColor(red: 106.0/255.0, green: 229.0/255.0, blue: 222.0/255.0, alpha: 1.0)
         view.addSubview(v)
         
     }

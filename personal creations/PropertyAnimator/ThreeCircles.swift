@@ -17,15 +17,24 @@ class ThreeCircles: UIView {
         super.init(frame: frame)
         
 //        setup()
-        hardcodeIt()
+//        hardcodeIt()
+        
+    }
+    
+    init(frame: CGRect, color: UIColor) {
+        super.init(frame: frame)
+        
+        //        setup()
+        hardcodeIt(color: color)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func hardcodeIt(){
+    func hardcodeIt(color: UIColor){
         layer.addSublayer(shapeLayer)
+        
         let path = UIBezierPath()
         
 //        let cx = bounds.width / 2
@@ -34,156 +43,95 @@ class ThreeCircles: UIView {
 //        let x = sin(t) * 67.2 + cx
 //        let y = cy - cos(t) * 67.2
 //        let c = CGPoint(x: x, y: y)
-        let radius : CGFloat = 30
+        let radius : CGFloat = self.bounds.width / 4.0
+        
         
         let DegToRadians = CGFloat(60).degreesToRadians
         let yShift = tan(DegToRadians) * radius
+        print(yShift)
         
         
         var startAngle: CGFloat = CGFloat(180-60).degreesToRadians
         var endAngle: CGFloat = CGFloat(180+300).degreesToRadians
         
-        path.addArc(withCenter: CGPoint(x:180, y:180), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        path.addArc(withCenter: CGPoint(x:2*radius, y:radius), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
 
         endAngle = CGFloat(0).degreesToRadians
         startAngle  = CGFloat(300).degreesToRadians
         
-        path.addArc(withCenter: CGPoint(x:180-radius, y:180+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: false)
+        path.addArc(withCenter: CGPoint(x:radius, y:radius+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: false)
         
         
         startAngle = CGFloat(180).degreesToRadians
         endAngle  = CGFloat(120).degreesToRadians
         
-        path.addArc(withCenter: CGPoint(x:180+radius, y:180+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: true)
+        path.addArc(withCenter: CGPoint(x:3*radius, y:radius+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: true)
         
         
         startAngle = CGFloat(120).degreesToRadians
         endAngle  = CGFloat(240).degreesToRadians
         
-        path.addArc(withCenter: CGPoint(x:180+radius, y:180+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: true)
+        path.addArc(withCenter: CGPoint(x:3*radius, y:radius+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: true)
         
         
         startAngle = CGFloat(60).degreesToRadians
         endAngle  = CGFloat(60+360).degreesToRadians
         
-        path.addArc(withCenter: CGPoint(x:180, y:180), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: false)
+        path.addArc(withCenter: CGPoint(x:2*radius, y:radius), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: false)
 
         
         startAngle = CGFloat(240).degreesToRadians
         endAngle  = CGFloat(180).degreesToRadians
         
-        path.addArc(withCenter: CGPoint(x:180+radius, y:180+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: true)
+        path.addArc(withCenter: CGPoint(x:3*radius, y:radius+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: true)
 
         
         // Next loop
         startAngle = CGFloat(0).degreesToRadians
         endAngle  = CGFloat(60).degreesToRadians
         
-        path.addArc(withCenter: CGPoint(x:180-radius, y:180+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: false)
+        path.addArc(withCenter: CGPoint(x:radius, y:radius+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: false)
         
         // Next loop
         startAngle = CGFloat(360+60).degreesToRadians
         endAngle  = CGFloat(360-60).degreesToRadians
         
-        path.addArc(withCenter: CGPoint(x:180-radius, y:180+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: false)
+        path.addArc(withCenter: CGPoint(x:radius, y:radius+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: false)
         
         
         //Add one last 0.05 of the total 6*360 * 0.05 = 108
 //        08333333333333
         startAngle = CGFloat(180-60).degreesToRadians
-        endAngle = CGFloat(180-60+180).degreesToRadians
+        endAngle = CGFloat(180-60+222.48).degreesToRadians
         
-        path.addArc(withCenter: CGPoint(x:180, y:180), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-        
-        
-    
-        
-        
-        
-        shapeLayer.path = path.cgPath
-        shapeLayer.strokeColor = UIColor.white.cgColor
-        shapeLayer.lineWidth = 9
-        shapeLayer.fillColor = UIColor.clear.cgColor
+        path.addArc(withCenter: CGPoint(x:2*radius, y:radius), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
 
         
-//        let newView = UIView(frame: CGRect(x: 50, y: 50, width: 80, height: 10))
-//        self.addSubview(newView)
-//        
-//        newView.clipsToBounds = true
-//        newView.backgroundColor = .blue
-//        
-//        let anim = CAKeyframeAnimation(keyPath: "position")
-//        
-//        // set the animations path to our bezier curve
-//        anim.path = path.cgPath
-//        
-//        // set some more parameters for the animation
-//        // this rotation mode means that our object will rotate so that it's parallel to whatever point it is currently on the curve
-//        anim.rotationMode = kCAAnimationRotateAuto
-//        anim.repeatCount = Float.infinity
-//        anim.duration = 3.0
-//        anim.calculationMode = "paced"
-//        
-//        // we add the animation to the squares 'layer' property
-//        newView.layer.add(anim, forKey: "animate position along path")
-        
-//        
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = color.cgColor
+        shapeLayer.lineWidth = radius / 3
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineCap = "round"
+ 
         
         let a = CABasicAnimation(keyPath: "strokeEnd")
-        a.duration = 2.8
-        a.fromValue = 0.08333333333333
+        a.duration = 2.84 * 1.103
+        a.fromValue = 0.103
         a.timingFunction = CAMediaTimingFunction(name: "linear")
         a.toValue = 1
          a.repeatCount = Float.infinity
         
         let b = CABasicAnimation(keyPath: "strokeStart")
-        b.duration = 2.8
+        b.duration = 2.84 * 1.103
         b.fromValue = 0.0
-        b.toValue = 1.0 - 0.08333333333333
+        b.toValue = 1.0 - 0.103
         b.repeatCount = Float.infinity
         b.timingFunction = CAMediaTimingFunction(name: "linear")
 
         shapeLayer.add(a, forKey: "strokeEnd")
         shapeLayer.add(b, forKey: "strokeStart")
         
-        
-        
-        
-        
-//        let a = CABasicAnimation(keyPath: "strokeEnd")
-//        a.duration = 3
-//        a.fromValue = 0
-//        a.toValue = 1.0
-//        a.repeatCount = Float.infinity
-//        
-//        shapeLayer.add(a, forKey: "strokeEnd")
-//        
-//        let b = CABasicAnimation(keyPath: "strokeStart")
-//        b.duration = 3
-//        b.fromValue = 0
-//        b.toValue = 1.0
-//        b.beginTime = CACurrentMediaTime() + 0.5
-//        b.repeatCount = Float.infinity
-//        
-//        shapeLayer.add(b, forKey: "strokeStart")
-        
-//        let b = CABasicAnimation(keyPath: "strokeStart")
-//        b.duration = 3
-//        b.fromValue = 0
-//        b.toValue = 0.9
-//        b.repeatCount = Float.infinity
-//        shapeLayer.add(b, forKey: "strokeStart")
-//
-//        let anim = CAKeyframeAnimation(keyPath: "position")
-//        
-//        anim.path = path.cgPath
-//        anim.calculationMode = kCAAnimationPaced
-//        anim.repeatCount = Float.infinity
-//        anim.duration = 5.0
-//        
-//        //@IBOutlet weak var ball: UIImageView!
-//        self.shapeLayer.add(anim, forKey: "animate position along path")
-        
+        shapeLayer.frame.origin = CGPoint(x: (self.bounds.width - 4*radius)/2, y: (self.bounds.height - 2*radius - yShift)/2)
         
     }
     
