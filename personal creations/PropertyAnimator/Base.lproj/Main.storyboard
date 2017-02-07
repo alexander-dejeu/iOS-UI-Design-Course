@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L3X-5f-esJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Foa-3n-ald">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -150,8 +150,24 @@
                     <view key="view" contentMode="scaleToFill" id="8TP-HH-P4g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vk7-ft-M6g">
+                                <rect key="frame" x="164" y="580" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="endAnimationWithSender:" destination="Foa-3n-ald" eventType="touchUpInside" id="OJP-b9-lzj"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vk7-ft-M6g" firstAttribute="centerX" secondItem="8TP-HH-P4g" secondAttribute="centerX" id="dTD-py-mpR"/>
+                            <constraint firstItem="k1e-SP-OXz" firstAttribute="top" secondItem="vk7-ft-M6g" secondAttribute="bottom" constant="57" id="iFA-d6-ikW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="endAnimationButton" destination="vk7-ft-M6g" id="sMm-ex-hqh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rq1-Ct-X20" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

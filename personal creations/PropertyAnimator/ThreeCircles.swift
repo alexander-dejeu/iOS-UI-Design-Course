@@ -11,20 +11,18 @@ import UIKit
 class ThreeCircles: UIView {
     
     let shapeLayer = CAShapeLayer()
-    
+    var path = UIBezierPath()
+    var a = CABasicAnimation(keyPath: "strokeEnd")
+    var b = CABasicAnimation(keyPath: "strokeStart")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-//        setup()
-//        hardcodeIt()
-        
     }
     
     init(frame: CGRect, color: UIColor) {
         super.init(frame: frame)
         
-        //        setup()
+
         hardcodeIt(color: color)
     }
     
@@ -32,23 +30,37 @@ class ThreeCircles: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func endAnimation(){
+        print(path.currentPoint)
+        print(shapeLayer.path?.currentPoint)
+        print(shapeLayer.presentation()?.strokeEnd)
+        print(shapeLayer.position)
+        shapeLayer.removeAllAnimations()
+    
+        
+        
+        
+        let newPath = UIBezierPath()
+        newPath.move(to: CGPoint(x: 0, y: 0))
+        newPath.addLine(to: CGPoint(x: shapeLayer.bounds.width, y: 0))
+        newPath.addLine(to: CGPoint(x: shapeLayer.bounds.width, y: shapeLayer.bounds.height))
+        newPath.addLine(to: CGPoint(x: 0, y: shapeLayer.bounds.height))
+        newPath.addLine(to: CGPoint(x: 0, y: 0))
+        
+        
+        
+        
+    }
+    
     func hardcodeIt(color: UIColor){
         layer.addSublayer(shapeLayer)
         
-        let path = UIBezierPath()
         
-//        let cx = bounds.width / 2
-//        let cy = bounds.height / 2
-//        let t = CGFloat(M_PI * 2) / CGFloat(nodules) * CGFloat(i)
-//        let x = sin(t) * 67.2 + cx
-//        let y = cy - cos(t) * 67.2
-//        let c = CGPoint(x: x, y: y)
-        let radius : CGFloat = self.bounds.width / 4.0
-        
+        let radius : CGFloat = self.bounds.width / 4.0 - ((self.bounds.width / 4.0)/3)/4
+
         
         let DegToRadians = CGFloat(60).degreesToRadians
         let yShift = tan(DegToRadians) * radius
-        print(yShift)
         
         
         var startAngle: CGFloat = CGFloat(180-60).degreesToRadians
@@ -114,14 +126,14 @@ class ThreeCircles: UIView {
         shapeLayer.lineCap = "round"
  
         
-        let a = CABasicAnimation(keyPath: "strokeEnd")
+        
         a.duration = 2.84 * 1.103
         a.fromValue = 0.103
         a.timingFunction = CAMediaTimingFunction(name: "linear")
         a.toValue = 1
          a.repeatCount = Float.infinity
         
-        let b = CABasicAnimation(keyPath: "strokeStart")
+        
         b.duration = 2.84 * 1.103
         b.fromValue = 0.0
         b.toValue = 1.0 - 0.103
