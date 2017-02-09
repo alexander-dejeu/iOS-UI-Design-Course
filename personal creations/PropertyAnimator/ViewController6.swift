@@ -25,8 +25,8 @@ class ViewController6: UIViewController {
         v3 = ThreeSpiningCircles(frame: r)
         
         v.backgroundColor = .black
-        v3.center = view.center
-        view.addSubview(v3)
+        v.center = view.center
+        view.addSubview(v)
     }
     
     @IBAction func endAnimation(sender: UIButton){

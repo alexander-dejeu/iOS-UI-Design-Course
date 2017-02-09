@@ -16,7 +16,7 @@ class ThreeSpiningCircles: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        hardcodeIt(color: .brown)
+        hardcodeWithPath(color: .brown)
     }
     
     init(frame: CGRect, color: UIColor) {
@@ -34,6 +34,34 @@ class ThreeSpiningCircles: UIView {
         layer.cornerRadius = layer.bounds.width / 2.0
     }
     
+    func hardcodeWithPath(color: UIColor){
+        layer.addSublayer(outerCircle)
+        outerCircle.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+        squareToCircle(layer: outerCircle)
+        outerCircle.borderColor = color.cgColor
+        outerCircle.borderWidth = self.frame.width / 50.0
+        
+        var path = UIBezierPath()
+//        
+//        path.addArc(withCenter: CGPoint(x: outerCircle.frame.midX, y:outerCircle.frame.midY), radius: 3*radius, startAngle: 0, endAngle: 360, clockwise: true)
+//        
+//        
+//        shapeLayer.path = path.cgPath
+//        shapeLayer.strokeColor = color.cgColor
+//        shapeLayer.lineWidth = radius / 3
+//        shapeLayer.fillColor = UIColor.clear.cgColor
+//        shapeLayer.lineCap = "round"
+//        
+//        
+//        
+//        a.duration = 2.84 * 1.103
+//        a.fromValue = 0.103
+//        a.timingFunction = CAMediaTimingFunction(name: "linear")
+//        a.toValue = 1
+//        a.repeatCount = Float.infinity
+
+    }
+    
     func hardcodeIt(color: UIColor){
         layer.addSublayer(outerCircle)
         layer.addSublayer(innerCircles)
@@ -41,9 +69,9 @@ class ThreeSpiningCircles: UIView {
         outerCircle.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         squareToCircle(layer: outerCircle)
         outerCircle.borderColor = color.cgColor
-        outerCircle.borderWidth = self.frame.width / 100.0
+        outerCircle.borderWidth = self.frame.width / 50.0
         
-        let radius : CGFloat = self.bounds.width / 4.0 - ((self.bounds.width / 4.0)/3)/4
+        let radius : CGFloat = self.bounds.width / 5.0 - ((self.bounds.width / 5.0)/3)/5
         
         
         let DegToRadians = CGFloat(60).degreesToRadians
@@ -67,48 +95,33 @@ class ThreeSpiningCircles: UIView {
         circleThree.backgroundColor = color.cgColor
         
         let innerW = 2.0*radius + 1.5*radius
-        let innerH = 2.0*radius + (yShift)*0.75
-        innerCircles.frame = CGRect(x: (outerCircle.bounds.width - innerW)/2.0, y: (outerCircle.bounds.height - innerH)/2.0, width: innerW , height: innerH)
+//        let innerH = 2.0*radius + (yShift)*0.75
+        innerCircles.frame = CGRect(x: (outerCircle.bounds.width - innerW)/2.0, y: (outerCircle.bounds.height - innerW)/2.0, width: innerW , height: innerW)
         let cX = innerCircles.bounds.midX
         let cy = innerCircles.bounds.midY
         circleOne.position = CGPoint(x : cX, y: cy - radius*0.75)
         circleTwo.position = CGPoint(x : cX - radius*0.75, y: cy - radius*0.75 + (yShift)*0.75)
         circleThree.position = CGPoint(x : cX + radius*0.75, y: cy - radius*0.75 + (yShift)*0.75)
-        
+        print(innerCircles.frame)
         
         innerCircles.addSublayer(circleOne)
         innerCircles.addSublayer(circleTwo)
         innerCircles.addSublayer(circleThree)
         
+        print(circleOne.frame)
+        print(circleTwo.frame)
+        print(circleThree.frame)
+        
         let rotationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotationAnimation.fromValue = 0
         rotationAnimation.toValue = M_PI * 2
-        rotationAnimation.duration = 1.5
+        rotationAnimation.duration = 1.25
         
         
         rotationAnimation.repeatCount = MAXFLOAT
         print(innerCircles.frame)
         
         innerCircles.add(rotationAnimation, forKey: "transform.rotation")
-        
-        
-//        innerCircles.position = self.center
-        
-//        circleOne.cornerRadius = 
-        
-        
-//        path.addArc(withCenter: CGPoint(x:2*radius, y:radius), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-//        
-//        endAngle = CGFloat(0).degreesToRadians
-//        startAngle  = CGFloat(300).degreesToRadians
-//        
-//        path.addArc(withCenter: CGPoint(x:radius, y:radius+yShift), radius: radius, startAngle: startAngle , endAngle: endAngle, clockwise: false)
-//        
-//        
-//        startAngle = CGFloat(180).degreesToRadians
-//        endAngle  = CGFloat(120).degreesToRadians
-//        
-//        path.addArc(withCenter: CGPoint(x:3*radius, y:
     }
 
 }

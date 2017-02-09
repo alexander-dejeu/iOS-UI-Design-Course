@@ -15,6 +15,8 @@ class ThreeCircles: UIView {
     var a = CABasicAnimation(keyPath: "strokeEnd")
     var b = CABasicAnimation(keyPath: "strokeStart")
     
+    var startTime : NSDate = NSDate()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -22,7 +24,7 @@ class ThreeCircles: UIView {
     init(frame: CGRect, color: UIColor) {
         super.init(frame: frame)
         
-
+        startTime = NSDate()
         hardcodeIt(color: color)
     }
     
@@ -31,13 +33,90 @@ class ThreeCircles: UIView {
     }
     
     func endAnimation(){
-        print(path.currentPoint)
-        print(shapeLayer.path?.currentPoint)
-        print(shapeLayer.presentation()?.strokeEnd)
-        print(shapeLayer.position)
-        shapeLayer.removeAllAnimations()
-    
-        print(shapeLayer.presentation()?.position)
+        
+        //TODO : Grad Layer
+        //Mask frad layer
+//        print(path.currentPoint)
+//        print(shapeLayer.path?.currentPoint)
+//        print(shapeLayer.presentation()?.strokeEnd)
+//        print(shapeLayer.position)
+//        shapeLayer.removeAllAnimations()
+//    
+//        print(shapeLayer.presentation()?.position)
+//        print((shapeLayer.value(forKey: "strokeEnd") as! CABasicAnimation).values)
+        
+        print(shapeLayer.strokeStart)
+        print(shapeLayer.beginTime)
+        print(shapeLayer.speed)
+        
+        print(a.speed)
+        print(a.beginTime)
+        
+        let date = NSDate()
+        
+        var runningTime = date.timeIntervalSince(startTime as Date)
+        
+        print("has been running for: \(runningTime)")
+        
+        //So we happen to know the total time is : 2.84 * 1.103
+        var runTime = 2.84 * 1.103
+        var percentage = runningTime.truncatingRemainder(dividingBy: runTime) / runTime * 100.0
+        print("percentage completed: \(percentage)")
+        
+//        0-6.94%
+//        6.94% - 19.44
+//        19.44 - 23.61
+//        23.61 - 36.11
+//        36.11 - 40.277
+//        40.277 - 52.77
+//        52.777 - 68.055
+//        68.055 - 72.22
+//        72.22 - 84.722
+//        88.888
+//        100
+        
+        
+        var delay : Double = 0
+        var startIndex
+        if percentage >= 0 && percentage < 6.94{
+            delay = ((6.94 - percentage)/100.0) * runTime
+        }
+        else if percentage >= 6.94 && percentage < 19.44{
+            
+        }
+        else if percentage >= 19.44 && percentage < 23.61{
+            
+        }
+        else if percentage >= 23.61 && percentage < 36.11{
+            
+        }
+        else if percentage >= 36.11 && percentage < 40.277{
+            
+        }
+        else if percentage >= 40.277 && percentage < 52.77{
+            
+        }
+        else if percentage >= 52.77 && percentage < 68.055{
+            
+        }
+        else if percentage >= 68.055 && percentage < 72.22{
+            
+        }
+        else if percentage >= 72.22 && percentage < 84.722{
+            
+        }
+        else if percentage >= 84.722 && percentage <  88.888{
+            
+        }
+        else{
+            
+        }
+        
+        
+        //Determine the amount of time until at a 'good point'  Then end it
+        
+        //Create a new path from that point!
+        
         
         
         
