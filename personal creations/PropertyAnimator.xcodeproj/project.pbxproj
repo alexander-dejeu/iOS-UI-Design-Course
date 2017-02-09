@@ -19,6 +19,7 @@
 		D89EDFF01E3B03B300F8EB70 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EDFEF1E3B03B300F8EB70 /* CircleView.swift */; };
 		D89EDFF21E3B147F00F8EB70 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EDFF11E3B147F00F8EB70 /* ViewController3.swift */; };
 		D89EDFF41E3B1C2400F8EB70 /* ViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EDFF31E3B1C2400F8EB70 /* ViewController4.swift */; };
+		FA002D031E4C2C9000A95F1C /* ThreeSpiningCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA002D021E4C2C8F00A95F1C /* ThreeSpiningCircles.swift */; };
 		FA33BF5B1E4420D6001A3897 /* ViewController7.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33BF5A1E4420D6001A3897 /* ViewController7.swift */; };
 		FA33BF5D1E4420FB001A3897 /* radarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33BF5C1E4420FB001A3897 /* radarView.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		D89EDFEF1E3B03B300F8EB70 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		D89EDFF11E3B147F00F8EB70 /* ViewController3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
 		D89EDFF31E3B1C2400F8EB70 /* ViewController4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController4.swift; sourceTree = "<group>"; };
+		FA002D021E4C2C8F00A95F1C /* ThreeSpiningCircles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeSpiningCircles.swift; sourceTree = "<group>"; };
 		FA33BF5A1E4420D6001A3897 /* ViewController7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController7.swift; sourceTree = "<group>"; };
 		FA33BF5C1E4420FB001A3897 /* radarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = radarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +83,7 @@
 				D80D628B1E411C6F00BC30F6 /* ViewController6.swift */,
 				FA33BF5A1E4420D6001A3897 /* ViewController7.swift */,
 				D89EDFEF1E3B03B300F8EB70 /* CircleView.swift */,
+				FA002D021E4C2C8F00A95F1C /* ThreeSpiningCircles.swift */,
 				FA33BF5C1E4420FB001A3897 /* radarView.swift */,
 				D80D62891E411C6100BC30F6 /* ThreeCircles.swift */,
 				D89EDFBF1E3ACDEF00F8EB70 /* Main.storyboard */,
@@ -169,6 +172,7 @@
 				D80D628A1E411C6100BC30F6 /* ThreeCircles.swift in Sources */,
 				FA33BF5D1E4420FB001A3897 /* radarView.swift in Sources */,
 				D89EDFF01E3B03B300F8EB70 /* CircleView.swift in Sources */,
+				FA002D031E4C2C9000A95F1C /* ThreeSpiningCircles.swift in Sources */,
 				D89EDFBE1E3ACDEF00F8EB70 /* ViewController.swift in Sources */,
 				D89EDFBC1E3ACDEF00F8EB70 /* AppDelegate.swift in Sources */,
 				D80D628C1E411C6F00BC30F6 /* ViewController6.swift in Sources */,

@@ -37,6 +37,7 @@ class ThreeCircles: UIView {
         print(shapeLayer.position)
         shapeLayer.removeAllAnimations()
     
+        print(shapeLayer.presentation()?.position)
         
         
         
