@@ -75,42 +75,120 @@ class ThreeCircles: UIView {
 //        88.888
 //        100
         
+         let radius : CGFloat = self.bounds.width / 4.0 - ((self.bounds.width / 4.0)/3)/4
+        
         
         var delay : Double = 0
-        var startIndex
+        var cornerPoints : [CGPoint] = [CGPoint(x:0, y:0), CGPoint(x: self.bounds.width, y: 0), CGPoint(x: self.bounds.width, y: self.bounds.height), CGPoint(x: 0, y: self.bounds.height)]
+        var clockwise = true
+        var exitPoint : CGPoint = CGPoint(x: 0, y: 0)
+        var moveIndex : Int = -1
+        
+        let topTangent = CGPoint(x: self.bounds.midX, y: 0)
+        let leftLeftTangent = CGPoint(x: self.bounds.minX, y: self.bounds.maxY - radius)
+        let leftBottomTangent = CGPoint(x: self.bounds.minX + radius, y: self.bounds.maxY)
+        let rightRightTangent = CGPoint(x: self.bounds.maxX, y: self.bounds.maxY - radius)
+        let rightBottomTangent = CGPoint(x: self.bounds.maxX - radius, y: self.bounds.maxY)
+        
+        
         if percentage >= 0 && percentage < 6.94{
             delay = ((6.94 - percentage)/100.0) * runTime
+            exitPoint = topTangent
+            clockwise = true
+            moveIndex = 1
         }
         else if percentage >= 6.94 && percentage < 19.44{
-            
+            delay = ((19.44 - percentage)/100.0) * runTime
+            exitPoint = leftLeftTangent
+            clockwise = false
+            moveIndex = 3
         }
         else if percentage >= 19.44 && percentage < 23.61{
-            
+            delay = ((23.61 - percentage)/100.0) * runTime
+            exitPoint = leftBottomTangent
+            clockwise = false
+            moveIndex = 2
         }
         else if percentage >= 23.61 && percentage < 36.11{
-            
+            delay = ((36.11 - percentage)/100.0) * runTime
+            exitPoint = rightRightTangent
+            clockwise = true
+            moveIndex = 2
         }
         else if percentage >= 36.11 && percentage < 40.277{
-            
+            delay = ((40.277 - percentage)/100.0) * runTime
+            exitPoint = rightBottomTangent
+            clockwise = true
+            moveIndex = 3
         }
         else if percentage >= 40.277 && percentage < 52.77{
-            
+            delay = ((52.77 - percentage)/100.0) * runTime
+            exitPoint = topTangent
+            clockwise = false
+            moveIndex = 0
         }
         else if percentage >= 52.77 && percentage < 68.055{
-            
+            delay = ((68.055 - percentage)/100.0) * runTime
+            exitPoint = rightRightTangent
+            clockwise = true
+            moveIndex = 2
         }
         else if percentage >= 68.055 && percentage < 72.22{
-            
+            delay = ((72.22 - percentage)/100.0) * runTime
+            exitPoint = rightBottomTangent
+            clockwise = true
+            moveIndex = 3
         }
         else if percentage >= 72.22 && percentage < 84.722{
-            
+            delay = ((84.722 - percentage)/100.0) * runTime
+            exitPoint = leftLeftTangent
+            clockwise = false
+            moveIndex = 3
         }
         else if percentage >= 84.722 && percentage <  88.888{
-            
+            delay = ((88.888 - percentage)/100.0) * runTime
+            exitPoint = leftBottomTangent
+            clockwise = false
+            moveIndex = 2
         }
         else{
-            
+            delay = ((100.0 - percentage)/100.0) * runTime
+            exitPoint = topTangent
+            clockwise = false
+            moveIndex = 0
         }
+        
+        
+        print(delay)
+        
+
+//        shapeLayer.path = path.cgPath
+//        shapeLayer.strokeColor = color.cgColor
+//        shapeLayer.lineWidth = radius / 3
+//        shapeLayer.fillColor = UIColor.clear.cgColor
+//        shapeLayer.lineCap = "round"
+//        
+//        
+//        
+//        a.duration = 2.84 * 1.103
+//        a.fromValue = 0.103
+//        a.timingFunction = CAMediaTimingFunction(name: "linear")
+//        a.toValue = 1
+//        a.repeatCount = Float.infinity
+//        
+//        
+//        b.duration = 2.84 * 1.103
+//        b.fromValue = 0.0
+//        b.toValue = 1.0 - 0.103
+//        b.repeatCount = Float.infinity
+//        b.timingFunction = CAMediaTimingFunction(name: "linear")
+//        
+//        shapeLayer.add(a, forKey: "strokeEnd")
+//        shapeLayer.add(b, forKey: "strokeStart")
+//        
+//        shapeLayer.frame.origin = CGPoint(x: (self.bounds.width - 4*radius)/2, y: (self.bounds.height - 2*radius - yShift)/2)
+        
+        
         
         
         //Determine the amount of time until at a 'good point'  Then end it
@@ -121,12 +199,48 @@ class ThreeCircles: UIView {
         
         
         let newPath = UIBezierPath()
-        newPath.move(to: CGPoint(x: 0, y: 0))
-        newPath.addLine(to: CGPoint(x: shapeLayer.bounds.width, y: 0))
-        newPath.addLine(to: CGPoint(x: shapeLayer.bounds.width, y: shapeLayer.bounds.height))
-        newPath.addLine(to: CGPoint(x: 0, y: shapeLayer.bounds.height))
-        newPath.addLine(to: CGPoint(x: 0, y: 0))
+        print(exitPoint)
+        newPath.move(to: exitPoint)
+        for i in 0..<4{
+            var currentIndex = moveIndex
+            if clockwise == true{
+                currentIndex = (moveIndex + i) % 4
+            }
+            else{
+                currentIndex = (moveIndex - i) % 4
+                if currentIndex < 0{
+                    currentIndex = 4 + currentIndex
+                }
+
+            }
+            print(currentIndex)
+            print(cornerPoints[currentIndex])
+            newPath.addLine(to: cornerPoints[currentIndex])
+        }
+//        newPath.close()
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            print("yo yo yo")
+            self.a.duration =  2.84 / 4.0
+            self.a.fromValue = 0.103
+            self.a.toValue = 1
+            self.a.repeatCount = 0
+            
+            
+            self.b.duration = 2.84 / 4.0
+            self.b.fromValue = 0.0
+            self.b.toValue = 1.0 - 0.103
+            self.b.repeatCount = 0
+            
+            self.shapeLayer.removeAllAnimations()
+            self.shapeLayer.add(self.a, forKey: "strokeEnd")
+            self.shapeLayer.path = newPath.cgPath
+            
+            
+//            self.shapeLayer.add(self.b, forKey: "strokeStart")
+        }
+        
+//        newPath.close()
         
         
         
