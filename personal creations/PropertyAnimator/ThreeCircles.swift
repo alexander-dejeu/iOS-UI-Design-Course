@@ -15,6 +15,8 @@ class ThreeCircles: UIView {
     var a = CABasicAnimation(keyPath: "strokeEnd")
     var b = CABasicAnimation(keyPath: "strokeStart")
     
+    let gradLayer = CAGradientLayer()
+    
     var startTime : NSDate = NSDate()
     
     override init(frame: CGRect) {
@@ -23,6 +25,14 @@ class ThreeCircles: UIView {
     
     init(frame: CGRect, color: UIColor) {
         super.init(frame: frame)
+        self.layer.addSublayer(gradLayer)
+        
+        gradLayer.frame = bounds
+        let red = UIColor.red.cgColor
+        let yellow = UIColor.yellow.cgColor
+        gradLayer.colors = [red,yellow]
+        gradLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradLayer.endPoint = CGPoint(x: 1, y: 1)
         
         startTime = NSDate()
         hardcodeIt(color: color)
@@ -35,6 +45,7 @@ class ThreeCircles: UIView {
     func clearAnimation(){
         self.layer.removeAllAnimations()
         self.shapeLayer.removeFromSuperlayer()
+        self.gradLayer.removeFromSuperlayer()
     }
     
     func endAnimation(){
@@ -47,14 +58,10 @@ class ThreeCircles: UIView {
         
         var runningTime = date.timeIntervalSince(startTime as Date)
         
-        print("has been running for: \(runningTime)")
-        
         //So we happen to know the total time is : 2.84 * 1.103
         var runTime = 2.84 * 1.103
         
         var percentage = runningTime.truncatingRemainder(dividingBy: runTime) / runTime * 100.0
-        print("percentage completed: \(percentage)")
-        
         
         let radius : CGFloat = self.bounds.width / 4.0 - ((self.bounds.width / 4.0)/3)/4
         
@@ -140,7 +147,6 @@ class ThreeCircles: UIView {
         }
         
         let newPath = UIBezierPath()
-        print(exitPoint)
         newPath.move(to: exitPoint)
         for i in 0..<4{
             var currentIndex = moveIndex
@@ -154,8 +160,6 @@ class ThreeCircles: UIView {
                 }
 
             }
-            print(currentIndex)
-            print(cornerPoints[currentIndex])
             newPath.addLine(to: cornerPoints[currentIndex])
         }
         newPath.addLine(to: exitPoint)
@@ -164,7 +168,6 @@ class ThreeCircles: UIView {
         delay -= timeForLength
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            print("yo yo yo")
             self.a.duration =  2.84 / 4.0
             self.a.fromValue = 0.103
             self.a.toValue = 1
@@ -186,9 +189,6 @@ class ThreeCircles: UIView {
             }
             
         }
-        print("Yeah the shapeLayer layer frame: \(shapeLayer.frame)")
-        
-        
     }
     
     func hardcodeIt(color: UIColor){
@@ -283,6 +283,8 @@ class ThreeCircles: UIView {
         shapeLayer.add(b, forKey: "strokeStart")
         
         shapeLayer.frame.origin = CGPoint(x: (self.bounds.width - 4*radius)/2, y: (self.bounds.height - 2*radius - yShift)/2)
+        
+        gradLayer.mask = shapeLayer
         
     }
     
