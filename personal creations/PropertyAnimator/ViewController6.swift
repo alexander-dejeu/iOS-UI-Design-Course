@@ -25,6 +25,7 @@ class ViewController6: UIViewController {
         v3 = ThreeSpiningCircles(frame: r)
         
         v.backgroundColor = .black
+        
         v.center = view.center
         view.addSubview(v)
     }

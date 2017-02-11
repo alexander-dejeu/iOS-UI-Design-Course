@@ -32,25 +32,16 @@ class ThreeCircles: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func clearAnimation(){
+        self.layer.removeAllAnimations()
+        self.shapeLayer.removeFromSuperlayer()
+    }
+    
     func endAnimation(){
         
         //TODO : Grad Layer
         //Mask frad layer
-//        print(path.currentPoint)
-//        print(shapeLayer.path?.currentPoint)
-//        print(shapeLayer.presentation()?.strokeEnd)
-//        print(shapeLayer.position)
-//        shapeLayer.removeAllAnimations()
-//    
-//        print(shapeLayer.presentation()?.position)
-//        print((shapeLayer.value(forKey: "strokeEnd") as! CABasicAnimation).values)
-        
-        print(shapeLayer.strokeStart)
-        print(shapeLayer.beginTime)
-        print(shapeLayer.speed)
-        
-        print(a.speed)
-        print(a.beginTime)
+
         
         let date = NSDate()
         
@@ -60,22 +51,12 @@ class ThreeCircles: UIView {
         
         //So we happen to know the total time is : 2.84 * 1.103
         var runTime = 2.84 * 1.103
+        
         var percentage = runningTime.truncatingRemainder(dividingBy: runTime) / runTime * 100.0
         print("percentage completed: \(percentage)")
         
-//        0-6.94%
-//        6.94% - 19.44
-//        19.44 - 23.61
-//        23.61 - 36.11
-//        36.11 - 40.277
-//        40.277 - 52.77
-//        52.777 - 68.055
-//        68.055 - 72.22
-//        72.22 - 84.722
-//        88.888
-//        100
         
-         let radius : CGFloat = self.bounds.width / 4.0 - ((self.bounds.width / 4.0)/3)/4
+        let radius : CGFloat = self.bounds.width / 4.0 - ((self.bounds.width / 4.0)/3)/4
         
         
         var delay : Double = 0
@@ -158,46 +139,6 @@ class ThreeCircles: UIView {
             moveIndex = 0
         }
         
-        
-        print(delay)
-        
-
-//        shapeLayer.path = path.cgPath
-//        shapeLayer.strokeColor = color.cgColor
-//        shapeLayer.lineWidth = radius / 3
-//        shapeLayer.fillColor = UIColor.clear.cgColor
-//        shapeLayer.lineCap = "round"
-//        
-//        
-//        
-//        a.duration = 2.84 * 1.103
-//        a.fromValue = 0.103
-//        a.timingFunction = CAMediaTimingFunction(name: "linear")
-//        a.toValue = 1
-//        a.repeatCount = Float.infinity
-//        
-//        
-//        b.duration = 2.84 * 1.103
-//        b.fromValue = 0.0
-//        b.toValue = 1.0 - 0.103
-//        b.repeatCount = Float.infinity
-//        b.timingFunction = CAMediaTimingFunction(name: "linear")
-//        
-//        shapeLayer.add(a, forKey: "strokeEnd")
-//        shapeLayer.add(b, forKey: "strokeStart")
-//        
-//        shapeLayer.frame.origin = CGPoint(x: (self.bounds.width - 4*radius)/2, y: (self.bounds.height - 2*radius - yShift)/2)
-        
-        
-        
-        
-        //Determine the amount of time until at a 'good point'  Then end it
-        
-        //Create a new path from that point!
-        
-        
-        
-        
         let newPath = UIBezierPath()
         print(exitPoint)
         newPath.move(to: exitPoint)
@@ -217,7 +158,10 @@ class ThreeCircles: UIView {
             print(cornerPoints[currentIndex])
             newPath.addLine(to: cornerPoints[currentIndex])
         }
+        newPath.addLine(to: exitPoint)
 //        newPath.close()
+        let timeForLength = runTime * 0.103
+        delay -= timeForLength
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             print("yo yo yo")
@@ -233,15 +177,16 @@ class ThreeCircles: UIView {
             self.b.repeatCount = 0
             
             self.shapeLayer.removeAllAnimations()
+            self.shapeLayer.frame.origin = CGPoint(x: 0, y: 0)
             self.shapeLayer.add(self.a, forKey: "strokeEnd")
             self.shapeLayer.path = newPath.cgPath
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + (2.84 / 4.0)) {
+                self.clearAnimation()
+            }
             
-//            self.shapeLayer.add(self.b, forKey: "strokeStart")
         }
-        
-//        newPath.close()
-        
+        print("Yeah the shapeLayer layer frame: \(shapeLayer.frame)")
         
         
     }
