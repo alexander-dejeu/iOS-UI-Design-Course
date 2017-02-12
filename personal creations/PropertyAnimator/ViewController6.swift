@@ -31,6 +31,11 @@ class ViewController6: UIViewController {
     }
     
     @IBAction func endAnimation(sender: UIButton){
-        v.endAnimation()
+        if v.isAnimating{
+            v.endAnimation()
+        }
+        else{
+            v.stopAnimating()
+        }
     }
 }

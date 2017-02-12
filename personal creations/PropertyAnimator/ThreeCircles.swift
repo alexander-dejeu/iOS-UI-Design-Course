@@ -19,6 +19,10 @@ class ThreeCircles: UIView {
     
     var startTime : NSDate = NSDate()
     
+//    var loadingIn : UILoading
+//    var isAnimating = True
+    open var isAnimating: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -42,6 +46,17 @@ class ThreeCircles: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func startAnimating(){
+        hardcodeIt(color: .black)
+        isAnimating = true
+    }
+    
+    func stopAnimating(){
+        endAnimation()
+        isAnimating = false
+    }
+
+    
     func clearAnimation(){
         self.layer.removeAllAnimations()
         self.shapeLayer.removeFromSuperlayer()
@@ -49,11 +64,6 @@ class ThreeCircles: UIView {
     }
     
     func endAnimation(){
-        
-        //TODO : Grad Layer
-        //Mask frad layer
-
-        
         let date = NSDate()
         
         var runningTime = date.timeIntervalSince(startTime as Date)
